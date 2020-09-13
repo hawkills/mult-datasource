@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hawkills.source.data.mult.mapper.primary.StudentMapper">
+
+    <select id="find" resultType="com.hawkills.source.data.mult.pojo.Student" parameterType="com.hawkills.source.data.mult.pojo.Student">
+        SELECT `id`, `name`, `age`, `gender`, `school`, `grade` FROM student
+        <where>
+            <if test="student.id != null">
+                AND `id` = #{student.id}
+            </if>
+            <if test="student.name != null">
+                AND `name` = #{student.name}
+            </if>
+            <if test="student.age != null">
+                AND `age` = #{student.age}
+            </if>
+            <if test="student.gender != null">
+                AND `gender` = #{student.gender}
+            </if>
+            <if test="student.school != null">
+                AND `school` = #{student.school}
+            </if>
+            <if test="student.grade != null">
+                AND `grade` = #{student.grade}
+            </if>
+        </where>
+    </select>
+
+    <select id="findAll" resultType="com.hawkills.source.data.mult.pojo.Student">
+        SELECT `id`, `name`, `age`, `gender`, `school`, `grade` FROM student
+    </select>
+
+    <insert id="add" parameterType="com.hawkills.source.data.mult.pojo.Student">
+        INSERT INTO student
+        (`name`, `age`, `gender`, `school`, `grade`)
+        VALUES
+        (#{student.name}, #{student.age}, #{student.gender}, #{student.school}, #{student.grade})
+    </insert>
+
+    <update id="modify" parameterType="com.hawkills.source.data.mult.pojo.Student">
+        UPDATE student
+        <set>
+            <if test="student.name != null">
+                `name` = #{student.name}
+            </if>
+            <if test="student.age != null">
+                `age` = #{student.age}
+            </if>
+            <if test="student.gender != null">
+                `gender` = #{student.gender}
+            </if>
+            <if test="student.school != null">
+                `school` = #{student.school}
+            </if>
+            <if test="student.grade != null">
+                `grade` = #{student.grade}
+            </if>
+        </set>
+        WHERE `id` = #{student.id}
+    </update>
+
+    <delete id="remove" parameterType="com.hawkills.source.data.mult.pojo.Student">
+        DELETE FROM student
+        <where>
+            <if test="student.id != null">
+                AND `id` = #{student.id}
+            </if>
+            <if test="student.name != null">
+                AND `name` = #{student.name}
+            </if>
+            <if test="student.age != null">
+                AND `age` = #{student.age}
+            </if>
+            <if test="student.gender != null">
+                AND `gender` = #{student.gender}
+            </if>
+            <if test="student.school != null">
+                AND `school` = #{student.school}
+            </if>
+            <if test="student.grade != null">
+                AND `grade` = #{student.grade}
+            </if>
+        </where>
+    </delete>
+
+</mapper>
